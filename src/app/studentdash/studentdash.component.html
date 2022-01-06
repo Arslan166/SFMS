@@ -1,0 +1,108 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#"><h3>SFMS</h3></a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      </ul>
+       <form class="d-flex">
+        <button class="btn btn-outline-success"  (click)="clickAddStudent()" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal">AddDetails</button>
+        <button class="btn btn-outline-success mx-4" routerLink="/login">Logout</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<div class="container m-4">
+<div class="jumbotron">
+  <br>
+  <p><input type="text" id="date"/></p>
+  <hr>
+  <h1 class="display-4">Student Fees Management System</h1>
+  <p class="lead">All records about Students are present Below.</p>
+  <hr class="my-4">
+  <p>Do Good Have Good</p>
+  <p class="lead">
+    <a class="btn btn-primary btn-lg" href="#" role="button">Learn More</a>
+  </p>
+</div>
+</div>
+<hr>
+
+<table class="table mt-2">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">FirstName</th>
+      <th scope="col">LastName</th>
+      <th scope="col">Email</th>
+      <th scope="col">Mobile Number</th>
+      <th scope="col">Student Fees</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let data of StudentAll">
+    <td>{{data.id}}</td>
+    <td>{{data.firstName}}</td>
+    <td>{{data.lastName}}</td>
+    <td>{{data.email}}</td>
+    <td>{{data.mobile}}</td>
+    <td>{{data.fees}}</td>
+    <td>
+    <button type="button" class="btn btn-xs btn-warning mx-2" (click)="onEdit(data)" data-bs-toggle="modal" data-bs-target="#exampleModal">Edit</button>
+    <button class="btn btn-xs btn-danger" (click)="deleteStudents(data)">Delete</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Student Details</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+<form [formGroup]="formvalue">
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">FirstName</label>
+    <input type="text" class="form-control" formControlName="firstName" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">LastName</label>
+    <input type="text" class="form-control" formControlName="lastName" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Email</label>
+    <input type="email" class="form-control" formControlName="email" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Mobile</label>
+    <input type="text" class="form-control" formControlName="mobile" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+  <div class="mb-3">
+    <label for="exampleInputEmail1" class="form-label">Fee Charges</label>
+    <input type="text" class="form-control" formControlName="fees" id="exampleInputEmail1" aria-describedby="emailHelp">
+  </div>
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button"  *ngIf="showAdd" class="btn btn-primary" (click)="postStudentDetails()">Add +</button>
+        <button type="button" *ngIf="showUpdate" class="btn btn-primary" (click)="putStudentDetails()">Update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

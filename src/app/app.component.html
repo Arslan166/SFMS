@@ -1,0 +1,32 @@
+<router-outlet></router-outlet>
+
+<div class="container mt-5">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Search..." [(ngModel)]="filterTerm">
+  </div>
+
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">FirstName</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Email</th>
+        <th scope="col">Mobile</th>
+        <th scope="col">Fees</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of userRecords | filter:filterTerm">
+        <td>{{user.id}}</td>
+        <td>{{user.firstName}}</td>
+        <td>{{user.lastName}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.mobile}}</td>
+        <td>{{user.fees}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
